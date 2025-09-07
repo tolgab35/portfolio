@@ -260,7 +260,7 @@ main {
   background: #ededed;
   display: flex;
   justify-content: center;
-  padding: 40px 0 20px;
+  padding: 40px 0 80px;
 }
 
 .three-cols__container {

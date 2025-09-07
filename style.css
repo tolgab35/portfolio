@@ -48,6 +48,19 @@ textarea {
   font: inherit;
 }
 
+/* =========================
+   CUSTOM TEXT SELECTION
+   ========================= */
+::selection {
+  background: #d1d5db; /* seçili arka plan rengi */
+  color: #000; /* seçili yazı rengi */
+}
+
+::-moz-selection {
+  background: #d1d5db;
+  color: #000;
+}
+
 /* WebKit scrollbar */
 ::-webkit-scrollbar {
   background: #808080;

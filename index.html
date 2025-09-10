@@ -5,25 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tolga Boz</title>
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="canonical" href="https://tolgaboz.me/" />
-
-    <!-- ====== Hard cache-busting for HTML & navigation ====== -->
-    <script>
-      (function () {
-        // Build sürümü (commit hash'in ilk 8 hanesi)
-        var V = "{{ site.github.build_revision | slice: 0, 8 }}";
-
-        // URL'de v paramı yoksa veya eskiyse → anında versiyonlu URL'ye geç
-        var q = new URLSearchParams(location.search);
-        if (q.get("v") !== V) {
-          var u = new URL(location.href);
-          u.searchParams.set("v", V);
-          location.replace(u.toString());
-          return; // Eski HTML ile devam etmeyelim
-        }
-      })();
-    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,11 +16,8 @@
       rel="stylesheet"
     />
 
-    <!-- Styles (cache-busted) -->
-    <link
-      rel="stylesheet"
-      href="/style.css?v={{ site.github.build_revision | slice: 0, 8 }}"
-    />
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -46,22 +26,21 @@
       <div class="header-content">
         <nav class="nav-menu" aria-label="Primary">
           <div class="nav-logo">
-            <!-- href boş bırakma; köke yönlendir -->
-            <a href="/">tolgaboz<span class="dotme">.me</span></a>
+            <a href="">tolgaboz<span class="dotme">.me</span></a>
           </div>
 
           <ul class="nav-list">
-            <li><a href="/">Work</a></li>
+            <li><a href="">Work</a></li>
             <li>
               <a
-                href="/assets/resume.pdf"
+                href="assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Resume</a
               >
             </li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/contact/">Contact</a></li>
+            <li><a href="about/">About</a></li>
+            <li><a href="contact/">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -81,10 +60,8 @@
             aria-label="Open Cuphead Memory Cards project in a new tab"
           >
             <img
-              src="/assets/previews/cuphead-memory-cards.png?v={{ site.github.build_revision | slice: 0, 8 }}"
+              src="assets/previews/cuphead-memory-cards.png"
               alt="Screenshot of the Cuphead Memory Cards game"
-              loading="lazy"
-              decoding="async"
             />
             <div class="overlay" aria-hidden="true">
               <h2>Cuphead Memory Cards</h2>
@@ -106,10 +83,8 @@
             aria-label="Open Naruto Quote Generator project in a new tab"
           >
             <img
-              src="/assets/previews/naruto-quote-generator.png?v={{ site.github.build_revision | slice: 0, 8 }}"
+              src="assets/previews/naruto-quote-generator.png"
               alt="Screenshot of the Naruto Quote Generator app"
-              loading="lazy"
-              decoding="async"
             />
             <div class="overlay" aria-hidden="true">
               <h2>Naruto Quote Generator</h2>
@@ -131,10 +106,8 @@
             aria-label="Open Portfolio Website in a new tab"
           >
             <img
-              src="/assets/previews/portfolio.png?v={{ site.github.build_revision | slice: 0, 8 }}"
+              src="assets/previews/portfolio.png"
               alt="Screenshot of my personal portfolio website"
-              loading="lazy"
-              decoding="async"
             />
             <div class="overlay" aria-hidden="true">
               <h2>Portfolio Website</h2>
@@ -156,10 +129,8 @@
             aria-label="Open Magical Keys project in a new tab"
           >
             <img
-              src="/assets/previews/magical-keys.png?v={{ site.github.build_revision | slice: 0, 8 }}"
+              src="assets/previews/magical-keys.png"
               alt="Screenshot of Magical Keys app"
-              loading="lazy"
-              decoding="async"
             />
             <div class="overlay" aria-hidden="true">
               <h2>Magical Keys</h2>
@@ -338,10 +309,26 @@
       </button>
     </footer>
 
-    <!-- Scripts (cache-busted) -->
-    <script
-      src="/script.js?v={{ site.github.build_revision | slice: 0, 8 }}"
-      defer
-    ></script>
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const topBtn = document.querySelector(".back-to-top");
+
+        function toggleBackToTop() {
+          if (window.scrollY > 400) {
+            topBtn.classList.add("is-visible");
+          } else {
+            topBtn.classList.remove("is-visible");
+          }
+        }
+
+        window.addEventListener("scroll", toggleBackToTop);
+        toggleBackToTop();
+
+        topBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    </script>
   </body>
 </html>

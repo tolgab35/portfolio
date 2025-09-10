@@ -16,8 +16,8 @@
       rel="stylesheet"
     />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Styles (cache-busted) -->
+    <link rel="stylesheet" href="{% include asset.html path='/style.css' %}" />
   </head>
 
   <body>
@@ -309,26 +309,7 @@
       </button>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const topBtn = document.querySelector(".back-to-top");
-
-        function toggleBackToTop() {
-          if (window.scrollY > 400) {
-            topBtn.classList.add("is-visible");
-          } else {
-            topBtn.classList.remove("is-visible");
-          }
-        }
-
-        window.addEventListener("scroll", toggleBackToTop);
-        toggleBackToTop();
-
-        topBtn.addEventListener("click", function () {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-    </script>
+    <!-- Scripts (cache-busted) -->
+    <script src="{% include asset.html path='/script.js' %}" defer></script>
   </body>
 </html>

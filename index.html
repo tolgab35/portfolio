@@ -16,8 +16,11 @@
       rel="stylesheet"
     />
 
-    <!-- Styles (cache-busted) -->
-    <link rel="stylesheet" href="{% include asset.html path='/style.css' %}" />
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/style.css?v={{ site.github.build_revision | slice: 0, 8 }}"
+    />
   </head>
 
   <body>
@@ -309,7 +312,10 @@
       </button>
     </footer>
 
-    <!-- Scripts (cache-busted) -->
-    <script src="{% include asset.html path='/script.js' %}" defer></script>
+    <!-- Scripts -->
+    <script
+      src="/script.js?v={{ site.github.build_revision | slice: 0, 8 }}"
+      defer
+    ></script>
   </body>
 </html>

@@ -52,10 +52,9 @@ textarea {
    CUSTOM TEXT SELECTION
    ========================= */
 ::selection {
-  background: #d1d5db; /* seçili arka plan rengi */
-  color: #000; /* seçili yazı rengi */
+  background: #d1d5db;
+  color: #000;
 }
-
 ::-moz-selection {
   background: #d1d5db;
   color: #000;
@@ -127,9 +126,11 @@ header {
   text-transform: uppercase;
   transition: opacity 0.3s ease;
 }
+
 .nav-list a:hover {
   opacity: 0.6;
 }
+
 .nav-list a::after {
   background: #3b82f6;
   border-radius: 1px;
@@ -145,7 +146,6 @@ header {
   height: 4px;
 }
 
-/* Header – responsive */
 @media (max-width: 1120px) {
   .nav-menu {
     flex-direction: column;
@@ -179,7 +179,7 @@ header {
 }
 
 /* =========================
-   MAIN / GRID
+   MAIN / GRID (UPDATED)
    ========================= */
 main {
   flex: 1;
@@ -189,80 +189,68 @@ main {
   margin: 70px 0 30px;
 }
 
+/* 🔥 Here is the big layout transformation */
 .main-grid {
   display: grid;
-  gap: 15px;
-  grid-auto-rows: 300px;
-  grid-template-columns: repeat(3, 300px);
+  gap: 40px;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 900px; /* wide, centered cards */
   margin: 0 auto;
-  width: calc(3 * 300px + 2 * 15px);
 }
 
+/* Card style */
 .grid-item {
   background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  display: block;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
   overflow: hidden;
+  display: block;
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .grid-item:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
 }
 
+/* Bigger preview images */
 .grid-item img {
-  display: block;
-  height: 100%;
-  object-fit: cover;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
 }
 
+/* Overlay */
 .grid-item .overlay {
-  background: rgba(75, 75, 75, 0.85);
-  border-radius: 5px;
-  color: #fafafa;
+  background: rgba(65, 65, 65, 0.88);
+  position: absolute;
+  inset: 0;
+  color: #fff;
+  opacity: 0;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  inset: 0;
   justify-content: flex-end;
-  opacity: 0;
-  padding: 30px;
-  position: absolute;
   transition: opacity 0.25s ease;
 }
+
 .grid-item:hover .overlay {
   opacity: 1;
 }
 
 .grid-item .overlay h2 {
-  border-bottom: 2px solid #fafafa;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 1.75px;
+  font-size: 22px;
+  border-bottom: 2px solid #fff;
   padding-bottom: 12px;
 }
-.grid-item .overlay p {
-  font-size: 12px;
-  letter-spacing: 1px;
-  line-height: 2em;
-  margin-top: 15px;
-}
 
-/* Grid – responsive */
-@media (max-width: 1120px) {
-  .main-grid {
-    grid-template-columns: repeat(2, 300px);
-    width: calc(2 * 300px + 15px);
-  }
-}
-@media (max-width: 650px) {
-  .main-grid {
-    grid-template-columns: 300px;
-    width: 300px;
-  }
+.grid-item .overlay p {
+  font-size: 14px;
+  margin-top: 14px;
+  line-height: 1.7em;
 }
 
 /* =========================
@@ -342,38 +330,10 @@ main {
     padding: 0 20px;
     width: 100%;
   }
-  .three-cols__item:nth-child(3) {
-    grid-column: auto;
-  }
   .three-cols__text {
     max-width: none;
     text-align: center;
   }
-}
-
-/* =========================
-   ABOUT PAGE (CENTERED COPY)
-   ========================= */
-.about-section {
-  color: #333;
-  margin: 80px auto;
-  max-width: 720px;
-  padding: 0 20px;
-}
-.about-section h2 {
-  color: #111;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-.about-section p {
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 18px;
-}
-.about-section strong {
-  color: #000;
 }
 
 /* =========================
@@ -408,12 +368,14 @@ main {
   display: flex;
   gap: 28px;
 }
+
 .social a {
   color: #1a1a1a;
   display: inline-flex;
   opacity: 0.6;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
+
 .social a:hover {
   opacity: 1;
   transform: translateY(-1px);
@@ -421,7 +383,6 @@ main {
 
 @media (max-width: 1120px) {
   .thin-footer {
-    box-sizing: border-box;
     padding: 20px 30px 44px;
     width: 100%;
   }
@@ -429,7 +390,6 @@ main {
 @media (max-width: 650px) {
   .thin-footer {
     flex-direction: column;
-    gap: 18px;
     text-align: center;
   }
 }
@@ -449,33 +409,21 @@ main {
   position: fixed;
   right: 3em;
   transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease,
-    background-color 0.2s ease-in-out, color 0.2s ease-in-out,
-    visibility 0s linear 0.25s;
+  transition: opacity 0.25s ease, transform 0.25s ease;
   visibility: hidden;
 }
 .back-to-top:hover {
   background: #3b82f6;
-  transform: translateY(6px);
 }
 .back-to-top.is-visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  transition: opacity 0.25s ease, transform 0.25s ease,
-    background-color 0.2s ease-in-out, color 0.2s ease-in-out, visibility 0s;
   visibility: visible;
-}
-@media (prefers-reduced-motion: reduce) {
-  .back-to-top,
-  .back-to-top.is-visible {
-    transform: none;
-    transition: none;
-  }
 }
 
 /* =========================
-   CONTACT HERO
+   CONTACT
    ========================= */
 .contact-hero {
   align-items: center;
@@ -502,18 +450,8 @@ main {
   letter-spacing: 0.5px;
 }
 
-.contact-hero__email a {
-  color: inherit;
-  text-decoration: none;
-  transition: 0.4s;
-}
-.contact-hero__email a:hover {
-  color: #3b82f6;
-}
-
 .contact-hero__kicker {
   color: #444;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   margin-top: 6px;

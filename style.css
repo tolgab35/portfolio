@@ -182,21 +182,29 @@ main {
 
 #work .main-wrap {
   margin: 40px 0 30px;
+  padding: 0 16px;
 }
 
 #work .main-grid {
   width: 100%;
-  max-width: 900px;
+  max-width: 1040px;
   margin: 0 auto;
   display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr;
+  gap: 32px;
+  grid-template-columns: 1fr; /* mobile: tek sütun */
+}
+
+/* 2x2 grid (tablet ve üstü) */
+@media (min-width: 768px) {
+  #work .main-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Project Card */
 #work .grid-item {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   display: block;
   position: relative;
@@ -213,8 +221,8 @@ main {
 #work .overlay {
   position: absolute;
   inset: 0;
-  padding: 40px;
-  background: rgba(65, 65, 65, 0.88);
+  padding: 32px;
+  background: rgba(31, 41, 55, 0.9);
   color: #fff;
   opacity: 0;
   display: flex;
@@ -227,14 +235,27 @@ main {
 }
 
 #work .overlay h2 {
-  font-size: 22px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #fff;
+  font-size: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
 }
 #work .overlay p {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 14px;
-  line-height: 1.7em;
+  line-height: 1.6;
+}
+
+/* Overlay – küçük ekranlarda daha sıkı padding */
+@media (max-width: 640px) {
+  #work .overlay {
+    padding: 20px;
+  }
+  #work .overlay h2 {
+    font-size: 18px;
+  }
+  #work .overlay p {
+    font-size: 13px;
+  }
 }
 
 /* =========================
